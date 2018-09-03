@@ -23,11 +23,12 @@ class OrderScreen extends Component {
       <div className="orderScreen" style={orderScreenDiv}>
         <div className="checkDiv" style={left}>
         <Check tableNumber={tableNumber}/>
+        <p><a href="/tables">Cancel</a></p>
         </div>
         <div className="menuDiv" style={right}>
           <Items />
         </div>
-        <div className="clear" />
+        <div className="clear"></div>
       </div>
     )
   }
