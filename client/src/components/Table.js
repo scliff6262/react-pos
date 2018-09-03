@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const table = {
   color: 'black',
@@ -13,7 +14,7 @@ const table = {
 const Table = (props) => {
   return (
     <div>
-      <a href={`/tables/${props.tableNumber}`}><div style={table}>{props.tableNumber}</div></a>
+    <NavLink to={`/tables/${props.tableNumber}`}><div style={table}>{props.tableNumber}</div></NavLink>
     </div>
   )
 }

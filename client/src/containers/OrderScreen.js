@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Check from '../components/Check'
 import Items from '../components/Items'
+import { NavLink } from 'react-router-dom'
 
 const left = {
   float: "left"
@@ -50,7 +51,7 @@ class OrderScreen extends Component {
         itemsToAdd={this.state.itemsToAdd}
         removeLastNewItem={this.removeLastNewItem}
         />
-        <p><a href="/tables">Cancel</a></p>
+        <p><NavLink to="/tables">Cancel</NavLink></p>
         </div>
         <div className="menuDiv" style={right}>
           <Items handleClick={this.addToCheck} tableNumber={tableNumber}/>
