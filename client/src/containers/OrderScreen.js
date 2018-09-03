@@ -40,7 +40,7 @@ class OrderScreen extends Component {
   }
 
   render(){
-    const tableNumber = this.props.location.pathname.split("/")[2]
+    const tableNumber = this.props.match.params.table
     return(
       <div className="orderScreen" style={orderScreenDiv}>
         <div className="checkDiv" style={left}>
@@ -53,7 +53,7 @@ class OrderScreen extends Component {
         <p><a href="/tables">Cancel</a></p>
         </div>
         <div className="menuDiv" style={right}>
-          <Items handleClick={this.addToCheck}/>
+          <Items handleClick={this.addToCheck} tableNumber={tableNumber}/>
         </div>
         <div className="clear"></div>
       </div>
