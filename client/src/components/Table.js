@@ -13,7 +13,7 @@ const table = {
 const Table = (props) => {
   return (
     <div>
-      <div style={table}>{props.tableNumber}</div>
+      <a href={`/tables/${props.tableNumber}`}><div style={table}>{props.tableNumber}</div></a>
     </div>
   )
 }
