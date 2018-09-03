@@ -32,13 +32,24 @@ class OrderScreen extends Component {
     })
   }
 
+  removeLastNewItem = (event) => {
+    const slicedArray = Array(this.state.itemsToAdd).slice(0, -1)
+    this.setState({
+      itemsToAdd: slicedArray
+    })
+  }
+
   render(){
     const tableNumber = this.props.location.pathname.split("/")[2]
-    console.log("number:", tableNumber)
     return(
       <div className="orderScreen" style={orderScreenDiv}>
         <div className="checkDiv" style={left}>
-        <Check tableNumber={tableNumber} initialItems={this.state.currentCheck} itemsToAdd={this.state.itemsToAdd}/>
+        <Check
+        tableNumber={tableNumber}
+        initialItems={this.state.currentCheck}
+        itemsToAdd={this.state.itemsToAdd}
+        removeLastNewItem={this.removeLastNewItem}
+        />
         <p><a href="/tables">Cancel</a></p>
         </div>
         <div className="menuDiv" style={right}>
