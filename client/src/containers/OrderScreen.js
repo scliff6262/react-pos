@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Check from '../components/Check'
+import Items from '../components/Items'
 
 const left = {
   float: "left"
@@ -24,7 +25,7 @@ class OrderScreen extends Component {
         <Check tableNumber={tableNumber}/>
         </div>
         <div className="menuDiv" style={right}>
-          Menu Items Here
+          <Items />
         </div>
         <div className="clear" />
       </div>
