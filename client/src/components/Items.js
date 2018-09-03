@@ -5,10 +5,10 @@ const Items = (props) => {
     <div>
       <h5>Select an Item</h5>
       <div>
-        <p href="#">Cabernet</p>
-        <p href="#">Chianti</p>
-        <p href="#">Pinot Grigio</p>
-        <p href="#">Sauvignon Blanc</p>
+        <p onClick={props.handleClick}>Cabernet</p>
+        <p onClick={props.handleClick}>Chianti</p>
+        <p onClick={props.handleClick}>Pinot Grigio</p>
+        <p onClick={props.handleClick}>Sauvignon Blanc</p>
       </div>
     </div>
   )
