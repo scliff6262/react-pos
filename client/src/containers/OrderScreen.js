@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Check from '../components/Check'
 
 const left = {
   float: "left"
@@ -15,10 +16,12 @@ const orderScreenDiv = {
 
 class OrderScreen extends Component {
   render(){
+    const tableNumber = this.props.location.pathname.split("/")[2]
+    console.log("number:", tableNumber)
     return(
       <div className="orderScreen" style={orderScreenDiv}>
         <div className="checkDiv" style={left}>
-        Check Here
+        <Check tableNumber={tableNumber}/>
         </div>
         <div className="menuDiv" style={right}>
           Menu Items Here
