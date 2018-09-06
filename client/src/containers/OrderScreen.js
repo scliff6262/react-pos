@@ -70,7 +70,6 @@ class OrderScreen extends Component {
   }
 
   render(){
-    console.log(this.state)
     const tableNumber = this.props.match.params.table
     return(
       <div className="orderScreen" style={orderScreenDiv}>
@@ -80,6 +79,7 @@ class OrderScreen extends Component {
         initialItems={this.state.currentCheck}
         itemsToAdd={this.state.itemsToAdd}
         removeLastNewItem={this.removeLastNewItem}
+        total={this.state.currentTotal}
         />
         <p><NavLink to="/tables">Cancel</NavLink></p>
         </div>

@@ -2,7 +2,12 @@ import React from 'react'
 
 const Check = (props) => {
   const items = props.initialItems.map( (item) => <li data-price={item.price}>{item.name}</li> )
-  const itemsToAdd = props.itemsToAdd.map( (item) => <li data-price={item.price} onClick={props.removeLastNewItem}>{item.name}</li> )
+  const itemsToAdd = props.itemsToAdd.map( (item) => <li data-price={(item.price)} onClick={props.removeLastNewItem}>{item.name}</li> )
+  let subtotal = 0
+
+  props.initialItems.forEach( item => subtotal += parseInt(item.price) )
+  props.itemsToAdd.forEach( item => subtotal += parseInt(item.price) )
+
   return (
     <div>
       <h5>Table {props.tableNumber}</h5>
@@ -10,6 +15,7 @@ const Check = (props) => {
         {items}
         {itemsToAdd}
       </ul>
+      <p>Subtotal: {subtotal} </p>
     </div>
   )
 }

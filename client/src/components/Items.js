@@ -20,7 +20,7 @@ const Items = (props) => {
             }
           }/>
             <Route exact path={`/tables/${props.tableNumber}/wine`} render={ () => {
-              const items = props.items.filter( item => item.category === "wine" ).map( item => <p onClick={props.handleClick}>{item.name}</p>)
+              const items = props.items.filter( item => item.category === "wine" ).map( item => <p data-price={item.price} data-id={item.id} onClick={props.handleClick}>{item.name}</p>)
               return(
                 <div>
                   {items}
