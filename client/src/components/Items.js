@@ -10,24 +10,20 @@ const Items = (props) => {
         <div>
           <NavBar tableNumber={props.tableNumber}/>
           <Switch>
-            <Route path={`/tables/${props.tableNumber}/beverages`} render={ () => {
+            <Route path={`/tables/${props.tableNumber}/beer`} render={ () => {
+              const items = props.items.filter( item => item.category === "beer" ).map( item => <p data-price={item.price} data-id={item.id} onClick={props.handleClick}>{item.name}</p>)
               return(
                 <div>
-                  <p onClick={props.handleClick}>Cabernet</p>
-                  <p onClick={props.handleClick}>Chianti</p>
-                  <p onClick={props.handleClick}>Pinot Grigio</p>
-                  <p onClick={props.handleClick}>Sauvignon Blanc</p>
+                  {items}
                 </div>
               )
             }
           }/>
-            <Route exact path={`/tables/${props.tableNumber}/food`} render={ () => {
+            <Route exact path={`/tables/${props.tableNumber}/wine`} render={ () => {
+              const items = props.items.filter( item => item.category === "wine" ).map( item => <p onClick={props.handleClick}>{item.name}</p>)
               return(
                 <div>
-                  <p onClick={props.handleClick}>Pizza</p>
-                  <p onClick={props.handleClick}>Salad</p>
-                  <p onClick={props.handleClick}>Burger</p>
-                  <p onClick={props.handleClick}>Fries</p>
+                  {items}
                 </div>
               )
             }

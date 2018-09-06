@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 const NavBar = (props) => {
   return(
     <div>
-      <NavLink to={`/tables/${props.tableNumber}/beverages`}>Beverages </NavLink>
-      <NavLink to={`/tables/${props.tableNumber}/food`}>Food</NavLink>
+      <NavLink to={`/tables/${props.tableNumber}/beer`}>Beer </NavLink>
+      <NavLink to={`/tables/${props.tableNumber}/wine`}>Wine</NavLink>
     </div>
   )
 }

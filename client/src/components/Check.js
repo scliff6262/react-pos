@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Check = (props) => {
-  const items = props.initialItems.map( (item) => <li>{item}</li> )
-  const itemsToAdd = props.itemsToAdd.map( (item) => <li onClick={props.removeLastNewItem}>{item}</li> )
+  const items = props.initialItems.map( (item) => <li data-price={item.price}>{item.name}</li> )
+  const itemsToAdd = props.itemsToAdd.map( (item) => <li data-price={item.price} onClick={props.removeLastNewItem}>{item.name}</li> )
   return (
     <div>
       <h5>Table {props.tableNumber}</h5>
