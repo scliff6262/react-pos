@@ -52,6 +52,18 @@ class OrderScreen extends Component {
     this.props.history.push('/tables')
   }
 
+  payCheck = () => {
+    const tableNumber = this.props.match.params.table
+    fetch("/checks/" + tableNumber, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({ active: false })
+    }).then ( r => alert("Table " + tableNumber + " has been paid."))
+    this.props.history.push('/tables')
+  }
+
   componentWillMount(){
     this.fetchMenuItems()
     this.fetchCurrentCheck()
@@ -88,7 +100,11 @@ class OrderScreen extends Component {
         removeLastNewItem={this.removeLastNewItem}
         total={this.state.currentTotal}
         />
-        <p><NavLink to="/tables">Cancel</NavLink><button onClick={this.sendOrder}>Send Order</button></p>
+        <p>
+          <NavLink to="/tables">Cancel</NavLink>
+          <button onClick={this.sendOrder}>Send Order</button>
+          <button onClick={this.payCheck}>Pay Check</button>
+        </p>
         </div>
         <div className="menuDiv" style={right}>
           <Items
