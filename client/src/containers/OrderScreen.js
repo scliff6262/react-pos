@@ -40,6 +40,17 @@ class OrderScreen extends Component {
     .then( json => this.setState({ currentCheck: json.items }))
   }
 
+  sendOrder = () => {
+    const tableNumber = this.props.match.params.table
+    fetch("/checks/" + tableNumber, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({ items: this.state.itemsToAdd })
+    }).then( r => alert(tableNumber + " has been updated"))
+  }
+
   componentWillMount(){
     this.fetchMenuItems()
     this.fetchCurrentCheck()
@@ -76,7 +87,7 @@ class OrderScreen extends Component {
         removeLastNewItem={this.removeLastNewItem}
         total={this.state.currentTotal}
         />
-        <p><NavLink to="/tables">Cancel</NavLink></p>
+        <p><NavLink to="/tables">Cancel</NavLink><button onClick={this.sendOrder}>Send Order</button></p>
         </div>
         <div className="menuDiv" style={right}>
           <Items

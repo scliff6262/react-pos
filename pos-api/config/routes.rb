@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :checks, only: [:index]
+  resources :checks, only: [:index, :update]
   get '/checks/:table_number', to: 'checks#find_or_create'
 
   resources :items, only: [:index]
