@@ -21,20 +21,7 @@ class OrderScreen extends Component {
     super()
 
     this.state = {
-      currentCheck: [
-        {
-          name: "Montepeloso Supertuscan",
-          price: 15,
-          category: "wine",
-          id: 1000
-        },
-        {
-          name: "Budweiser",
-          price: 4,
-          category: "beer",
-          id: 9000
-        }
-      ],
+      currentCheck: ["Loading"],
       itemsToAdd: [],
       menuItems: []
     }
@@ -47,11 +34,15 @@ class OrderScreen extends Component {
   }
 
   fetchCurrentCheck = () => {
-    //fetch("/")
+    const tableNumber = this.props.match.params.table
+    fetch("/checks/" + tableNumber)
+    .then(r => r.json() )
+    .then( json => this.setState({ currentCheck: json.items }))
   }
 
   componentWillMount(){
     this.fetchMenuItems()
+    this.fetchCurrentCheck()
   }
 
   addToCheck = (event) => {
