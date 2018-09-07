@@ -1,5 +1,10 @@
 class ChecksController < ApplicationController
 
+  def index
+    @checks = Check.all
+    render json: @checks
+  end
+
   def show
     @check = Check.find_by(active: true, table_number: params[:table_number])
     render json: @check

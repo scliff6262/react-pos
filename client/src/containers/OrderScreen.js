@@ -46,6 +46,10 @@ class OrderScreen extends Component {
     .then( json => this.setState({ menuItems: json }) )
   }
 
+  fetchCurrentCheck = () => {
+    //fetch("/")
+  }
+
   componentWillMount(){
     this.fetchMenuItems()
   }
