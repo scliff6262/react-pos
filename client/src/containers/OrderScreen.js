@@ -49,6 +49,7 @@ class OrderScreen extends Component {
       },
       body: JSON.stringify({ items: this.state.itemsToAdd })
     }).then( r => alert(tableNumber + " has been updated"))
+    this.props.history.push('/tables')
   }
 
   componentWillMount(){
