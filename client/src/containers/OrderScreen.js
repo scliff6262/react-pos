@@ -48,7 +48,7 @@ class OrderScreen extends Component {
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify({ items: this.state.itemsToAdd })
-    }).then( r => alert(tableNumber + " has been updated"))
+    })
     this.props.history.push('/tables')
   }
 
@@ -60,8 +60,8 @@ class OrderScreen extends Component {
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify({ active: false })
-    }).then ( r => alert("Table " + tableNumber + " has been paid."))
-    this.props.history.push('/tables')
+    })
+    setTimeout(() => { this.props.history.push('/tables') }, 100)
   }
 
   componentWillMount(){
