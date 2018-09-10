@@ -82,9 +82,11 @@ class OrderScreen extends Component {
   }
 
   removeLastNewItem = (event) => {
-    const slicedArray = Array(this.state.itemsToAdd).slice(0, -1)
+    const itemsToAdd = this.state.itemsToAdd
+    const indexOfDeletedItem = itemsToAdd.indexOf(itemsToAdd.find( item => event.target.innerText === item.name ))
+    itemsToAdd.splice(indexOfDeletedItem, 1)
     this.setState({
-      itemsToAdd: slicedArray
+      itemsToAdd: itemsToAdd
     })
   }
 
