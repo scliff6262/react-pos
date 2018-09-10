@@ -59,7 +59,7 @@ class OrderScreen extends Component {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
-      body: JSON.stringify({ active: false })
+      body: JSON.stringify({ items: this.state.itemsToAdd, active: false })
     })
     setTimeout(() => { this.props.history.push('/tables') }, 100)
   }

@@ -12,13 +12,13 @@ class ChecksController < ApplicationController
 
   def update
     @check = Check.find_by(active: true, table_number: params[:id])
-    if params[:items]
+    if params[:active]
+      @check.active = params[:active]
+      @check.save
+    else
       params[:items].each do |item|
         @check.items << Item.find(item[:id])
       end
-    else
-      @check.active = false
-      @check.save
     end
   end
 
