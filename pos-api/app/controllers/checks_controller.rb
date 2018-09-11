@@ -19,10 +19,15 @@ class ChecksController < ApplicationController
     else
       params[:items].each do |item|
         @check.items << Item.find(item[:id])
-      end 
+      end
       @check.active = false
       @check.save
     end
+  end
+
+  def destroy
+    @check = Check.last
+    Check.destroy(@check.id) if @check.items.empty?
   end
 
 end

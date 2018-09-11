@@ -61,7 +61,7 @@ class OrderScreen extends Component {
       },
       body: JSON.stringify({ items: this.state.itemsToAdd, active: false })
     })
-    setTimeout(() => { this.props.history.push('/tables') }, 100)
+    setTimeout(() => { this.props.history.push('/tables') }, 200)
   }
 
   componentWillMount(){
@@ -90,6 +90,17 @@ class OrderScreen extends Component {
     })
   }
 
+  cancelEmptyCheck = () => {
+    fetch('/checks/1', {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({})
+    })
+    setTimeout(() => { this.props.history.push('/tables') }, 200)
+  }
+
   render(){
     const tableNumber = this.props.match.params.table
     return(
@@ -103,7 +114,7 @@ class OrderScreen extends Component {
         total={this.state.currentTotal}
         />
         <p>
-          <NavLink to="/tables">Cancel</NavLink>
+          <button onClick={this.cancelEmptyCheck}>Cancel</button>
           <button onClick={this.sendOrder}>Send Order</button>
           <button onClick={this.payCheck}>Pay Check</button>
         </p>
