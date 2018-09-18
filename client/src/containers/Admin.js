@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewItem from '../components/NewItem'
 
 class Admin extends Component {
   constructor(){
@@ -7,7 +8,12 @@ class Admin extends Component {
     this.state = {
       token: null,
       username: "",
-      password: ""
+      password: "",
+      item: {
+        name: "",
+        category: "",
+        price: ""
+      }
     }
   }
 
@@ -44,6 +50,30 @@ class Admin extends Component {
   setTimeout(() => { console.log(this.state) }, 1000)
   }
 
+  handleItemChange = (e) => {
+    e.preventDefault()
+    const item = {...this.state.item}
+    switch(e.target.name){
+      case "name":
+        item.name = e.target.value
+        this.setState({ item })
+        break;
+      case "category":
+        item.category = e.target.value
+        this.setState({ item })
+        break;
+      case "price":
+        item.price = parseInt(e.target.value)
+        this.setState({ item })
+        break;
+    }
+  }
+
+  createItem = (e) => {
+    e.preventDefault()
+    console.log(this.state.item)
+  }
+
   render(){
     const tablesScreen = <button onClick={ (e) => this.props.history.push('/tables')}>Tables</button>
     if(this.state.token){
@@ -51,6 +81,7 @@ class Admin extends Component {
         <div>
           {tablesScreen}
           <h5>Welcome</h5>
+          <NewItem handleChange={this.handleItemChange} createItem={this.createItem} />
         </div>
       )
     } else {
