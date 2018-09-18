@@ -16,7 +16,11 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
  gem 'bcrypt', '~> 3.1.7'
  gem 'pry'
+<<<<<<< HEAD
  gem 'jwt'
+=======
+ gem 'devise'
+>>>>>>> 6da0e3c06ef1cae93427f61a1f11c47d1f6e89d1
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
