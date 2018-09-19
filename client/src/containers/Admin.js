@@ -12,7 +12,7 @@ class Admin extends Component {
       item: {
         name: "",
         category: "",
-        price: ""
+        price: 0
       }
     }
   }
@@ -71,7 +71,16 @@ class Admin extends Component {
 
   createItem = (e) => {
     e.preventDefault()
-    console.log(this.state.item)
+    fetch("/items", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(this.state.item)
+    }).then( () => {
+        const item = { name: "", category: "", price: 0 }
+        this.setState({ item })
+      })
   }
 
   render(){
@@ -81,7 +90,7 @@ class Admin extends Component {
         <div>
           {tablesScreen}
           <h5>Welcome</h5>
-          <NewItem handleChange={this.handleItemChange} createItem={this.createItem} />
+          <NewItem item={this.state.item} handleChange={this.handleItemChange} createItem={this.createItem} />
         </div>
       )
     } else {
