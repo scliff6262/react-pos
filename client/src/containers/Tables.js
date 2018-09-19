@@ -32,12 +32,15 @@ class Tables extends Component {
     return tableComponents
   }
 
-
+  adminLink = () => {
+    this.props.history.push('/admin')
+  }
 
   render() {
     return (
       <div>
         {this.displayTables(5)}
+        <button onClick={this.adminLink}>Admin</button>
       </div>
     )
   }
