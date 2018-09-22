@@ -28,6 +28,24 @@ const Items = (props) => {
               )
             }
           }/>
+            <Route exact path={`/tables/${props.tableNumber}/liq`} render={ () => {
+              const items = props.items.filter( item => item.category === "liquor" ).map( item => <p data-price={item.price} data-id={item.id} onClick={props.handleClick}>{item.name}</p>)
+              return(
+                <div>
+                  {items}
+                </div>
+              )
+            }
+          }/>
+            <Route exact path={`/tables/${props.tableNumber}/food`} render={ () => {
+              const items = props.items.filter( item => item.category === "food" ).map( item => <p data-price={item.price} data-id={item.id} onClick={props.handleClick}>{item.name}</p>)
+              return(
+                <div>
+                  {items}
+                </div>
+              )
+            }
+          }/>
           </Switch>
         </div>
       </Router>
