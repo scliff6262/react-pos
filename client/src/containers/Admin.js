@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewItem from '../components/NewItem'
+import AdminChecksList from '../components/AdminChecksList'
 
 class Admin extends Component {
   constructor(){
@@ -13,8 +14,13 @@ class Admin extends Component {
         name: "",
         category: "",
         price: 0
-      }
+      },
+      checks: []
     }
+  }
+
+  componentDidMount(){
+    this.getChecks()
   }
 
   changeUsername = (e) => {
@@ -83,6 +89,12 @@ class Admin extends Component {
       })
   }
 
+  getChecks = () => {
+    fetch("/checks")
+    .then( r => r.json() )
+    .then( json => this.setState({ checks: json }))
+  }
+
   render(){
     const tablesScreen = <button onClick={ (e) => this.props.history.push('/tables')}>Tables</button>
     if(this.state.token){
@@ -91,6 +103,14 @@ class Admin extends Component {
           {tablesScreen}
           <h5>Welcome</h5>
           <NewItem item={this.state.item} handleChange={this.handleItemChange} createItem={this.createItem} />
+          <p>Active Checks: </p>
+          <ul>
+            {this.state.checks.map( (check) => check.active ? <AdminChecksList check={check}/> : null )}
+          </ul>
+          <p>Archived Checks: </p>
+          <ul>
+            {this.state.checks.map( (check) => check.active ? null : <AdminChecksList check={check}/> )}
+          </ul>
         </div>
       )
     } else {
