@@ -12,7 +12,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/tables" component={Tables} />
             <Route path="/tables/:table" component={OrderScreen} />
-            <Route exact path="/admin" component={Admin}/>
+            <Route path="/admin" component={Admin}/>
           </Switch>
         </Router>
       </div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NewItem from '../components/NewItem'
 import AdminChecksList from '../components/AdminChecksList'
+import AdminCheck from './AdminCheck'
 
 class Admin extends Component {
   constructor(){
@@ -15,13 +17,17 @@ class Admin extends Component {
         category: "",
         price: 0
       },
-      checks: []
+      checks: [],
+      adminCheck: null
     }
+
   }
 
   componentDidMount(){
     this.getChecks()
+    this.editCheck()
   }
+
 
   changeUsername = (e) => {
     this.setState({
@@ -95,6 +101,13 @@ class Admin extends Component {
     .then( json => this.setState({ checks: json }))
   }
 
+  editCheck = () => {
+    const checkId = this.props.match.params.check
+    fetch(`/checks/${checkId}`)
+    .then( r => r.json() )
+    .then( json => this.setState({ adminCheck: json }))
+  }
+
   render(){
     const tablesScreen = <button onClick={ (e) => this.props.history.push('/tables')}>Tables</button>
     if(this.state.token){
@@ -107,10 +120,7 @@ class Admin extends Component {
           <ul>
             {this.state.checks.map( (check) => check.active ? <AdminChecksList check={check}/> : null )}
           </ul>
-          <p>Archived Checks: </p>
-          <ul>
-            {this.state.checks.map( (check) => check.active ? null : <AdminChecksList check={check}/> )}
-          </ul>
+          <Route path={'/admin/checks/:check'} render={ () => this.state.adminCheck ? <AdminCheck check={this.state.adminCheck} /> : <p>Loading</p> }/>
         </div>
       )
     } else {

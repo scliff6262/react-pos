@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const AdminChecksList = (props) => {
   const check = props.check
 
   return (
-    <li key={check.id}>
-      {check.id} { check.active ? <button style={{"background-color": "#39ff14"}}>Edit Check</button> : <button>View</button> }
+    <li key={check.id} id={check.id}>
+      <Link to={`/admin/checks/${check.id}`}> {check.table_number} </Link>
     </li>
   )
 }
