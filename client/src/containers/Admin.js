@@ -25,7 +25,6 @@ class Admin extends Component {
 
   componentDidMount(){
     this.getChecks()
-    this.editCheck()
   }
 
 
@@ -101,11 +100,11 @@ class Admin extends Component {
     .then( json => this.setState({ checks: json }))
   }
 
-  editCheck = () => {
-    const checkId = this.props.match.params.check
+  editCheck = (e) => {
+    const checkId = e.target.getAttribute('data-table')
     fetch(`/checks/${checkId}`)
     .then( r => r.json() )
-    .then( json => this.setState({ adminCheck: json }))
+    .then( json => this.setState({ adminCheck: json }) )
   }
 
   render(){
@@ -118,9 +117,9 @@ class Admin extends Component {
           <NewItem item={this.state.item} handleChange={this.handleItemChange} createItem={this.createItem} />
           <p>Active Checks: </p>
           <ul>
-            {this.state.checks.map( (check) => check.active ? <AdminChecksList check={check}/> : null )}
+            {this.state.checks.map( (check) => check.active ? <AdminChecksList editCheck={this.editCheck} check={check}/> : null )}
           </ul>
-          <Route path={'/admin/checks/:check'} render={ () => this.state.adminCheck ? <AdminCheck check={this.state.adminCheck} /> : <p>Loading</p> }/>
+          <Route exact path={'/admin/checks/:check'} render={ () => this.state.adminCheck ? <AdminCheck check={this.state.adminCheck} /> : <p>Loading</p> }/>
         </div>
       )
     } else {
