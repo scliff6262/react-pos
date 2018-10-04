@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 const AdminCheck = (props) => {
 
   const deleteItem = (e) => {
-    const itemId = parseInt(e.target.getAttribute("data-item-id"))
-    const checkId = parseInt(e.target.parentElement.parentElement.getAttribute("data-check-id"))
+    const target = e.target
+    const itemId = parseInt(target.getAttribute("data-item-id"))
+    const checkId = parseInt(target.parentElement.parentElement.getAttribute("data-check-id"))
 
     fetch("/check_items/" + itemId, {
       method: "DELETE",
@@ -13,6 +14,11 @@ const AdminCheck = (props) => {
       },
       body: JSON.stringify({ checkId })
     })
+
+    const listItem = target.parentElement
+
+    listItem.parentElement.removeChild(listItem)
+
   }
 
   const check = props.check
