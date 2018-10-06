@@ -119,7 +119,7 @@ class Admin extends Component {
           <ul>
             {this.state.checks.map( (check) => check.active ? <AdminChecksList editCheck={this.editCheck} check={check}/> : null )}
           </ul>
-          <Route exact path={'/admin/checks/:check'} render={ () => this.state.adminCheck ? <AdminCheck check={this.state.adminCheck} /> : <p>Loading</p> }/>
+          <Route exact path={'/admin/checks/:check'} render={ () => this.state.adminCheck ? <AdminCheck check={this.state.adminCheck} /> : null }/>
         </div>
       )
     } else {

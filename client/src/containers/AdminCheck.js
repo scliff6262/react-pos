@@ -15,9 +15,8 @@ const AdminCheck = (props) => {
       body: JSON.stringify({ checkId })
     })
 
-    const listItem = target.parentElement
-
-    listItem.parentElement.removeChild(listItem)
+    const listItem = target.parentElement.childNodes[0]
+    listItem.innerText = "DELETED"
 
   }
 
