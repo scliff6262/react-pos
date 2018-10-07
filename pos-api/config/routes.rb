@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shifts
   resources :checks, only: [:index, :update, :destroy]
   get '/checks/:table_number', to: 'checks#find_or_create'
 
