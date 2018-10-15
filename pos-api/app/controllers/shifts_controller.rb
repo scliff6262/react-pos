@@ -1,7 +1,12 @@
 class ShiftsController < ApplicationController
 
+  def index
+    shifts = Shift.all
+    render json: shifts
+  end
+
   def create
-    shift = Shift.new(date: Time.now.strftime("%m/%d/%Y") )
+    shift = Shift.new(date: Time.now )
     render json: shift if shift.save
   end
 
@@ -9,5 +14,5 @@ class ShiftsController < ApplicationController
     shift = Shift.last
     render json: shift
   end
-  
+
 end
