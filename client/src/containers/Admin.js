@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import NewItem from '../components/NewItem'
 import AdminChecksList from '../components/AdminChecksList'
 import AdminCheck from './AdminCheck'
@@ -74,9 +74,11 @@ class Admin extends Component {
         this.setState({ item })
         break;
       case "price":
-        item.price = parseInt(e.target.value)
+        item.price = parseInt(e.target.value, 10)
         this.setState({ item })
         break;
+      default:
+        return null
     }
   }
 
@@ -117,7 +119,7 @@ class Admin extends Component {
           <NewItem item={this.state.item} handleChange={this.handleItemChange} createItem={this.createItem} />
           <p>Active Checks: </p>
           <ul>
-            {this.state.checks.map( (check) => check.active ? <AdminChecksList editCheck={this.editCheck} check={check}/> : null )}
+            {this.state.checks.map( (check) => check.active ? <AdminChecksList key={check.id} editCheck={this.editCheck} check={check}/> : null )}
           </ul>
           <Route exact path={'/admin/checks/:check'} render={ () => this.state.adminCheck ? <AdminCheck check={this.state.adminCheck} /> : null }/>
         </div>

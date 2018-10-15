@@ -15,7 +15,9 @@ const Table = (props) => {
   }
 
   const active = (props.active === 'true')
-  active ? table["background"] = '#39ff14' : null
+  if(active){
+    table["background"] = '#39ff14'
+  }
   return (
     <div>
     <NavLink to={`/tables/${props.tableNumber}`}><div style={table}>{props.tableNumber}</div></NavLink>

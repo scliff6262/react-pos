@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Check from '../components/Check'
 import Items from '../components/Items'
-import { NavLink } from 'react-router-dom'
 
 const left = {
   float: "left"

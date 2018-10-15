@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const AdminCheck = (props) => {
 
   const deleteItem = (e) => {
     const target = e.target
-    const itemId = parseInt(target.getAttribute("data-item-id"))
-    const checkId = parseInt(target.parentElement.parentElement.getAttribute("data-check-id"))
+    const itemId = parseInt(target.getAttribute("data-item-id"), 10)
+    const checkId = parseInt(target.parentElement.parentElement.getAttribute("data-check-id"), 10)
 
     fetch("/check_items/" + itemId, {
       method: "DELETE",

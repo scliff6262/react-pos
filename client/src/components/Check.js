@@ -5,8 +5,8 @@ const Check = (props) => {
   const itemsToAdd = props.itemsToAdd.map( (item) => <li data-price={(item.price)} onClick={props.removeLastNewItem}>{item.name} - ${item.price}</li> )
   let subtotal = 0
 
-  props.initialItems.forEach( item => subtotal += parseInt(item.price) )
-  props.itemsToAdd.forEach( item => subtotal += parseInt(item.price) )
+  props.initialItems.forEach( item => subtotal += parseInt(item.price, 10) )
+  props.itemsToAdd.forEach( item => subtotal += parseInt(item.price, 10) )
 
   const tax = Math.round(100 * (subtotal * .08875))/100
   const total = tax + subtotal
