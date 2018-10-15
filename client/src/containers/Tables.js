@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Table from '../components/Table'
+import { connect } from 'react-redux'
+import { fetchShift } from '../actions/shiftActions'
 
 class Tables extends Component {
   constructor(){
@@ -10,6 +12,10 @@ class Tables extends Component {
     }
 
     this.findActiveTables()
+  }
+
+  componentWillMount(){
+    this.props.fetchShift()
   }
 
   findActiveTables = () => {
@@ -39,6 +45,7 @@ class Tables extends Component {
   render() {
     return (
       <div>
+        <h5>Shift: {this.props.thisShift.date}</h5>
         {this.displayTables(5)}
         <button onClick={this.adminLink}>Admin</button>
       </div>
@@ -46,4 +53,8 @@ class Tables extends Component {
   }
 }
 
-export default Tables
+const mapStateToProps = state => ({
+  thisShift: state.shifts.thisShift
+})
+
+export default connect(mapStateToProps, { fetchShift })(Tables)
